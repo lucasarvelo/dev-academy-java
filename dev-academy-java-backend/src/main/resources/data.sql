@@ -20,7 +20,7 @@ CREATE TABLE person_colours (
 	colour_id BIGINT NOT NULL,
 	FOREIGN KEY (person_id) REFERENCES people(id),
 	FOREIGN KEY (colour_id) REFERENCES colour(id)
-);
+);	
 
 INSERT INTO colour 
  (id, name) 
@@ -68,4 +68,6 @@ VALUES
  (11, 1),
  (11, 2),
  (11, 3);
+ 
+ ALTER SEQUENCE public.hibernate_sequence RESTART WITH 12;
  
