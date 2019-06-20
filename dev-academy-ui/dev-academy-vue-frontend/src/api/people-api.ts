@@ -20,5 +20,17 @@ export async function updatePerson(person: IPerson): Promise<boolean> {
   // person object. Return true or false based if the response
   // is a success or error.
 
-  throw new Error('Not Implemented');
+  const response = await http
+    .put(`/people/${person.id}`, JSON.stringify(person))
+    .then((resp) => {
+      if (resp.status === 200) {
+        return true;
+      }
+      return false;
+    })
+    .catch((error) => {
+      throw error.response;
+    });
+
+  return response;
 }
