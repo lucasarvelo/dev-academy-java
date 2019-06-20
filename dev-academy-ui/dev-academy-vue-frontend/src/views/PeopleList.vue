@@ -26,9 +26,15 @@
               :to="{name: 'person-edit', params: { id: person.id }}"
             >{{person | fullName}}</router-link>
           </td>
-          <td>{{(person | palindrome) ? 'Yes' : 'No'}}</td>
-          <td>{{person.authorised ? 'Yes' : 'No'}}</td>
-          <td>{{person.enabled ? 'Yes' : 'No'}}</td>
+          <td
+            v-bind:class="palindrome(person) ? 'color-green' : 'color-red'"
+          >{{palindrome(person) ? 'Yes' : 'No'}}</td>
+          <td
+            v-bind:class="person.authorised ? 'color-green' : 'color-red'"
+          >{{person.authorised ? 'Yes' : 'No'}}</td>
+          <td
+            v-bind:class="person.enabled ? 'color-green' : 'color-red'"
+          >{{person.enabled ? 'Yes' : 'No'}}</td>
           <td>{{person.colours | colourNames}}</td>
         </tr>
       </tbody>
@@ -46,10 +52,34 @@ export default Vue.extend({
   },
   data() {
     const people: IPerson[] = [];
-
     return {
       people,
     };
+  },
+  methods: {
+    palindrome: (person: IPerson): boolean => {
+      const fullName = `${person.firstName} ${person.lastName}`;
+      // TODO: Step 5
+      //
+      // Implement the palindrome computed field.
+      // True should be returned When the FullName is spelt the same
+      // forwards as it is backwards. The match should ignore any
+      // spaces and should also be case insensitive.
+      //
+      // Example: "Bo Bob" is a palindrome.
+
+      const fullNameNoSpacesLowerCase = fullName
+        .replace(/\s/g, '')
+        .toLowerCase();
+      const fullNameNoSpacesLowerCaseReverse = fullNameNoSpacesLowerCase
+        .split('')
+        .reverse()
+        .join('');
+
+      return fullNameNoSpacesLowerCase === fullNameNoSpacesLowerCaseReverse
+        ? true
+        : false;
+    },
   },
   filters: {
     colourNames: (colours: IColour[]): string => {
@@ -62,29 +92,20 @@ export default Vue.extend({
       //
       // Example: "Blue, Green, Red"
 
-      return 'Todo';
+      return colours.map((colour) => colour.name).join(', ');
     },
     fullName: (person: IPerson): string => {
       return `${person.firstName} ${person.lastName}`;
-    },
-    palindrome: (person: IPerson): boolean => {
-      const fullName = `${person.firstName} ${person.lastName}`;
-      // TODO: Step 5
-      //
-      // Implement the palindrome computed field.
-      // True should be returned When the FullName is spelt the same
-      // forwards as it is backwards. The match should ignore any
-      // spaces and should also be case insensitive.
-      //
-      // Example: "Bo Bob" is a palindrome.
-
-      return false;
     },
   },
 });
 </script>
 
 <style lang="sass">
+  .color-green
+    color: green
 
+  .color-red
+    color: red
 </style>
 
