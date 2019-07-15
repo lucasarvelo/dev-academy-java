@@ -19,7 +19,6 @@
         When the value is Yes the text colour should be Green.
         When the value is No the text colour should be Red.
         -->
-
         <tr v-for="person in people" :key="person.id">
           <td>
             <router-link
@@ -43,8 +42,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { getPeople } from '../api/people-api';
+import Vue from "vue";
+import { getPeople } from "../api/people-api";
 
 export default Vue.extend({
   async mounted() {
@@ -53,7 +52,7 @@ export default Vue.extend({
   data() {
     const people: IPerson[] = [];
     return {
-      people,
+      people
     };
   },
   methods: {
@@ -69,17 +68,16 @@ export default Vue.extend({
       // Example: "Bo Bob" is a palindrome.
 
       const fullNameNoSpacesLowerCase = fullName
-        .replace(/\s/g, '')
+        .replace(/\s/g, "")
         .toLowerCase();
-      const fullNameNoSpacesLowerCaseReverse = fullNameNoSpacesLowerCase
-        .split('')
-        .reverse()
-        .join('');
 
-      return fullNameNoSpacesLowerCase === fullNameNoSpacesLowerCaseReverse
-        ? true
-        : false;
-    },
+      const fullNameNoSpacesLowerCaseReverse = fullNameNoSpacesLowerCase
+        .split("")
+        .reverse()
+        .join("");
+
+      return fullNameNoSpacesLowerCase === fullNameNoSpacesLowerCaseReverse;
+    }
   },
   filters: {
     colourNames: (colours: IColour[]): string => {
@@ -92,12 +90,12 @@ export default Vue.extend({
       //
       // Example: "Blue, Green, Red"
 
-      return colours.map((colour) => colour.name).join(', ');
+      return colours.map(colour => colour.name).join(", ");
     },
     fullName: (person: IPerson): string => {
       return `${person.firstName} ${person.lastName}`;
-    },
-  },
+    }
+  }
 });
 </script>
 
@@ -108,4 +106,3 @@ export default Vue.extend({
   .color-red
     color: red
 </style>
-
