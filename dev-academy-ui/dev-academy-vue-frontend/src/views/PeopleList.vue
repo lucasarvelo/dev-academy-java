@@ -90,7 +90,10 @@ export default Vue.extend({
       //
       // Example: "Blue, Green, Red"
 
-      return colours.map(colour => colour.name).join(", ");
+      return colours
+        .map(colour => colour.name)
+        .sort()
+        .join(", ");
     },
     fullName: (person: IPerson): string => {
       return `${person.firstName} ${person.lastName}`;
