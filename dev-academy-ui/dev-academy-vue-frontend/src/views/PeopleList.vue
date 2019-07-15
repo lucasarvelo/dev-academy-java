@@ -26,13 +26,13 @@
             >{{person | fullName}}</router-link>
           </td>
           <td
-            v-bind:class="palindrome(person) ? 'color-green' : 'color-red'"
+            :class="palindrome(person) ? 'color-green' : 'color-red'"
           >{{palindrome(person) ? 'Yes' : 'No'}}</td>
           <td
-            v-bind:class="person.authorised ? 'color-green' : 'color-red'"
+            :class="person.authorised ? 'color-green' : 'color-red'"
           >{{person.authorised ? 'Yes' : 'No'}}</td>
           <td
-            v-bind:class="person.enabled ? 'color-green' : 'color-red'"
+            :class="person.enabled ? 'color-green' : 'color-red'"
           >{{person.enabled ? 'Yes' : 'No'}}</td>
           <td>{{person.colours | colourNames}}</td>
         </tr>
