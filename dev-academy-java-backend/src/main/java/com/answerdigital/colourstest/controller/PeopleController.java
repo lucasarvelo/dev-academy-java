@@ -51,7 +51,7 @@ public class PeopleController {
     	if (person.isPresent()) {
     		return new ResponseEntity(person, HttpStatus.OK);		
     	}
-    	return new ResponseEntity("[]", HttpStatus.NOT_FOUND);
+    	return new ResponseEntity("{}", HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{id}")
@@ -80,7 +80,7 @@ public class PeopleController {
         	}
         }
         
-        return new ResponseEntity("[]", HttpStatus.NOT_FOUND);
+        return new ResponseEntity("{}", HttpStatus.NOT_FOUND);
     }
     
     @PostMapping
@@ -91,6 +91,6 @@ public class PeopleController {
     		return new ResponseEntity(newPerson, HttpStatus.OK);
     	}
     	
-    	return new ResponseEntity("[]", HttpStatus.BAD_REQUEST);
+    	return new ResponseEntity("{}", HttpStatus.BAD_REQUEST);
     }
 }

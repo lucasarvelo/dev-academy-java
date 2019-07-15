@@ -35,7 +35,7 @@ public class ColoursController {
     	if (colour.isPresent()) {
     		return new ResponseEntity(colour, HttpStatus.OK);		
     	}
-    	return new ResponseEntity("[]", HttpStatus.NOT_FOUND);
+    	return new ResponseEntity("{}", HttpStatus.NOT_FOUND);
     }
     
     @PostMapping
@@ -46,7 +46,7 @@ public class ColoursController {
         	return new ResponseEntity(newColour, HttpStatus.OK);
         }
         
-    	return new ResponseEntity("[]", HttpStatus.BAD_REQUEST);
+    	return new ResponseEntity("{}", HttpStatus.BAD_REQUEST);
        
     }
     
